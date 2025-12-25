@@ -110,6 +110,8 @@ def make_safe_absolute_uri(base, rel=None):
         if not scheme or scheme in ACCEPTABLE_URI_SCHEMES:
             return base
         return ""
+    if rel.startswith("#"):
+        return rel
     uri = _urljoin(base, rel)
     if uri.strip().split(":", 1)[0] not in ACCEPTABLE_URI_SCHEMES:
         return ""
